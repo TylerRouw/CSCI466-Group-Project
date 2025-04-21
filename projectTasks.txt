@@ -1,0 +1,131 @@
+--------------------------------------------------------------------------------------------------------------
+
+CSCI 466 Group Project - Minimum Webstore Requirements.
+Everything pulled from the corresponding sections of the group project pdf.
+
+--------------------------------------------------------------------------------------------------------------
+
+
+Application
+- Implement both user and employee end for an online webstore.
+
+
+--------------------------------------------------------------------------------------------------------------
+
+
+Inventory
+- Owner(unsure if this just means employee or if "owner" is like a specialization of
+  employee thats only able to see the inventory) should be able to view "inventory page".
+
+	- Minimum for "inventory page" has to have a list of products with corresponding stock quantities.
+
+- Users should be able to view a page displaying which products are available, "product list" page.
+
+	- Minimum for "product list" page is list of products with corresponding prices.
+
+	- "Product list" page should have an easy way to get to a "product details" page 
+	  for a given item (maybe an embedded URL link in the product name or something).
+
+		- "Product details" page should have a way of easily adding 1 or more items to the cart.
+
+
+--------------------------------------------------------------------------------------------------------------
+
+
+Shopping Cart
+-Each user has a shopping cart, starts empty, grows as products are added.
+
+-User should be able to put in more than 1 of a given product into their cart at a time.
+
+-Cart should be able to hold multiple different products.
+
+-Must be a page to display contents of a users shopping cart, "Cart page".
+
+	- "Cart page" should have ability to remove any products from the cart.
+
+ 	- "Cart page" should have ability to change quantity of a product in the cart.
+	
+		- In order to do this we need to save some kind of state information,
+		  some approaches are:
+
+			- Writing info to a database.
+
+			- Hidden form elements.
+
+			- Session Variables.
+
+	- "Cart page" should have some way of getting to a "checkout page".
+
+
+--------------------------------------------------------------------------------------------------------------
+
+
+Checking Out 
+- Allows user to enter (fake)shipping address and (fake)billing information.
+
+	- minimum for "checkout page":
+
+		- needs to show the total value of items a users cart and let them submit an order.
+
+		- Once an order is submitted, the products on the order should be 
+	  	  associated with that order so they can be looked up later.
+
+		- Shopping cart should reset to empty after an order is placed.
+
+
+
+--------------------------------------------------------------------------------------------------------------
+
+
+Orders
+- When an order is placed need to store that information in a database.
+
+- When an order enters the system its status will be set to "processing" which will change
+  once an employee has logged in and changed its status.
+
+- Need to generate 3 different views for this.
+
+	- "Order status" page for the user.
+
+		- User should be able to visit a URL on the site to see info on their order
+		  like its current status(processed, shipped, etc.) and tracking numbers for shipping.
+
+		- "Order status" page should also include amount paid for each order and total for 
+		  all orders.
+
+	- "Outstanding Orders" employee side page that the employees would use as a guide to see which
+	  orders still need to be shipped. 
+
+		- each order should have link to "order fulfillment" page.
+
+
+	- "Order Fulfillment" page that allows employees to:
+
+		- see details on an individual order.
+
+		- change their status to shipped.
+
+		- add notes.
+
+		- contact the user.
+
+
+--------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+			
+
+		
+
+
+
+ 
