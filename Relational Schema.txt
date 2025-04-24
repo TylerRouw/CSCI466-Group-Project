@@ -1,0 +1,12 @@
+User (user_id [PK], username, email, password_hash, role)
+Product (product_id [PK], name, description, price, stock_quantity)
+Order (order_id [PK], user_id [FK → User.user_id], order_date, total_amount, status, shipping_address)
+OrderDetail (order_id [FK → Order.order_id], product_id [FK → Product.product_id], quantity, price_at_purchase [PK])
+
+Foreign Keys:
+
+Order.user_id → User.user_id
+
+OrderDetail.order_id → Order.order_id
+
+OrderDetail.product_id → Product.product_id
