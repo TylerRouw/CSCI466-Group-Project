@@ -1,7 +1,7 @@
 <?php
 
-$username='z1942888';	
-$password='2000Jul08';
+$username='';	
+$password='';
 
 try{
 
