@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Registration </title>
+	</head>
+	<body>
+		<h2> Register New Account </h2>
+
+		<form action ="register.php" method="POST">
+		
+			<b><label>Username:</label></b><br>
+			<input type="text" name="username" required><br><br>
+
+			<b><label>Password:</label></b><br>
+			<input type="password" name="password" required><br><br>
+
+			<b><label>Type: </label></b><br>
+			<input type="radio" name="type" value="employee" required> Employee
+			<input type="radio" name="type" value="customer" required> Customer<br><br>
+
+			<b><label>Email:</label></b><br>
+			<input type="email" name="email" required><br><br>
+
+			<b><label>Phone: (optional)</label></b><br/>
+			<input type="text" name="phone"><br><br>
+
+			<input type="submit" value="Register now">
+		</form>
+	</body>
+</html>
