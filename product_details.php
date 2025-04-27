@@ -21,6 +21,24 @@ try{
 	exit;
 }
 
+if(!isset($_SESSION['cart'])){
+	$_SESSION['cart'] = [];
+}
+
+if(isset($_POST['cartAdd'])){
+
+	$prodID = $_POST['prodID'];
+	$quantity = $_POST['quantity'];
+
+	if(isset($_SESSION['cart'][$prodID])){
+		$_SESSION['cart'][$prodID]['quantity'] += $quantity;
+	} else {
+		$_SESSION['cart'][$prodID] = [
+			'quantity' => $quantity,
+		];
+	}
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -36,12 +54,12 @@ try{
 
 	<h1><?php echo '$'.$product['price'] ?></h1>
 
-		<form action="product_details.php?id=<?php echo $product['prodID'] ?>" method="POST" />
-		<input type="hidden" name="prodID" value=<?php echo $product['prodID']; ?>>
+		<form action="product_details.php?id=<?php echo $product['prodID'] ?>" method="POST">
+		<input type="hidden" name="prodID" value="<?php echo $product['prodID']; ?>">
 
 		<input type="number" name="quantity" id="quantity" min="1" max ="<?php echo $product['stock']; ?>" value="1" style="width: 50px" required />
 
-		<input type="submit" name"cartAdd" value="Add to Cart" />
+		<input type="submit" name="cartAdd" value="Add to Cart" />
 	</form>
 
 	( Only <?php echo $product['stock'] ?> left in stock! )
@@ -51,3 +69,4 @@ try{
 	<a href="product.php">Back to Products</a>
 </body>
 </html>
+
