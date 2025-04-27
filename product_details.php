@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 $username = '';
 $password = '';
 
@@ -12,7 +11,7 @@ try{
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 	// get all product info for corresponding product link clicked
-	$sql = $pdo->prepare("SELECT prodID, name, description, price, image FROM products WHERE prodID = :id");
+	$sql = $pdo->prepare("SELECT prodID, name, description, price, image, stock FROM products WHERE prodID = :id");
 	$sql->execute(['id' => $_GET['id']]);
 	$product = $sql->fetch(PDO::FETCH_ASSOC);
 
@@ -36,6 +35,19 @@ try{
 	 	echo nl2br($product['description']); ?>
 
 	<h1><?php echo '$'.$product['price'] ?></h1>
-	
+
+		<form action="product_details.php?id=<?php echo $product['prodID'] ?>" method="POST" />
+		<input type="hidden" name="prodID" value=<?php echo $product['prodID']; ?>>
+
+		<input type="number" name="quantity" id="quantity" min="1" max ="<?php echo $product['stock']; ?>" value="1" style="width: 50px" required />
+
+		<input type="submit" name"cartAdd" value="Add to Cart" />
+	</form>
+
+	( Only <?php echo $product['stock'] ?> left in stock! )
+
+	<br/><br/>
+	<a href="cart.php">View Cart</a><br/>
+	<a href="product.php">Back to Products</a>
 </body>
 </html>
