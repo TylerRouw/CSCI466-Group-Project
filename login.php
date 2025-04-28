@@ -15,8 +15,6 @@ try{
 	$userInput = $_POST['username'];
 	$passInput = $_POST['password'];
 
-	
-
 	// check database for username that was input
 	$userCheck = $pdo->prepare("SELECT * FROM users WHERE username = :user");
 	$userCheck->execute([':user' => $userInput]);
@@ -31,6 +29,7 @@ try{
 		$_SESSION['usertype'] = $user['user_type'];	// use session variable to track user's type
 		$_SESSION['username'] = $user['username'];	// as well as their username
 
+		// redirects them depending on their user type
 		header("Location: ".$_SESSION['usertype']."_home.html");
 		exit();
 			

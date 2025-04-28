@@ -27,6 +27,7 @@ try{
 	<title>Inventory</title>
 </head>
 <body>
+	<h2><a href="owner_home.html">Home</a></h2>
 	<h1 style="text-align: center;">Inventory</h1>
 		<table border="1" width="50%" style="margin: 0 auto">
 			<thead>
@@ -42,7 +43,7 @@ try{
 					<tr>
 						<td style="text-align: center;"><?php echo $stock['prodID']; ?></td>
 						<td style="text-align: center;"><?php echo $stock['name']; ?></td>
-						<td style="text-align: center;"><?php echo $stock['price']; ?></td>
+						<td style="text-align: center;"><?php echo '$'.$stock['price']; ?></td>
 						<td style="text-align: center;"><?php echo $stock['stock']; ?></td>
 					</tr>
 				<?php } ?>

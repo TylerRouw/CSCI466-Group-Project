@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $username='';	
 $password='';
 
@@ -40,17 +42,12 @@ try{
 	]);
 
 
+	$_SESSION['usertype'] = $type;
+	$_SESSION['username'] = $user;
+
 	// redirect back to homepage corresponding with user type once registered
-	if($type === 'employee'){
-		header("Location: employee_home.html");
-		exit;
-	} else if ($type === 'customer'){
-		header("Location: customer_home.html");
-		exit;
-	} else if ($type === 'owner'){
-		header("Location: owner_home.html");
-		exit;
-	}
+	header("Location: ".$_SESSION['usertype']."_home.html");
+	exit();
 
 }
 catch(PDOException $e) {
