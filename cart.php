@@ -8,7 +8,8 @@ if(isset($_POST['action'])){
 	if($_POST['action'] === 'remove'){	
 		unset($_SESSION['cart'][$_POST['prodID']]);
 	}
-	
+
+
 	// subtracts 1 from cart if - button is hit as long as theres more than 1
 	// otherwise removes item from cart
 	if($_POST['action'] === 'subItem') {
@@ -19,10 +20,19 @@ if(isset($_POST['action'])){
 		}
 	}
 
+
 	// adds 1 to cart if + button is hit
 	if($_POST['action'] === 'addItem') {
 		$_SESSION['cart'][$_POST['prodID']]['quantity'] += 1;
 	}
+
+
+	if($_POST['action'] === 'checkout')
+	{
+		header("Location: checkout.php");
+		exit;
+	}
+
 
 	// reloads page
 	header("Location: cart.php");
@@ -124,6 +134,9 @@ try{
 	</table>
 	<?php if($totalPrice != 0) { ?>
 		<h2 style="text-align: right; margin-right: 12.5%">Grand Total: $<?php echo $totalPrice; ?></h2>
+		<form action="cart.php" method="POST">
+			<button style="float: right; margin-right: 12.5%" type="submit" name="action" value="checkout">Checkout!</button>
+		</form>
 	<?php } ?>
 	
 	

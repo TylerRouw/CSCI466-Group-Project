@@ -27,6 +27,13 @@ if(!isset($_SESSION['cart'])){
 
 if(isset($_POST['cartAdd'])){
 
+	$bool = true;
+	if(!isset($_SESSION['usertype']))
+	{
+		$bool = false;;
+
+	}
+
 	$prodID = $_POST['prodID'];
 	$quantity = $_POST['quantity'];
 
@@ -50,11 +57,16 @@ if(isset($_POST['cartAdd'])){
 <body>
 	<img src="<?php echo $product['image'] ?>" width="500" height="500" border='3px solid'/><br/>
 	<?php if($product['description'] != null)
-	 	echo nl2br($product['description']); ?>
-
+	 	echo nl2br($product['description']); ?>	
+	
 	<h1><?php echo '$'.$product['price'] ?></h1>
 
-		<form action="product_details.php?id=<?php echo $product['prodID'] ?>" method="POST">
+	<?php if($bool === false) { ?>
+		<a href="login.html">Login</a>
+		<?php echo " to add to cart!" ?>
+	<?php } ?>
+
+	<form action="product_details.php?id=<?php echo $product['prodID'] ?>" method="POST">
 		<input type="hidden" name="prodID" value="<?php echo $product['prodID']; ?>">
 
 		<input type="number" name="quantity" id="quantity" min="1" max ="<?php echo $product['stock']; ?>" value="1" style="width: 50px" required />
