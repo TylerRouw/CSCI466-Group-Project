@@ -2,13 +2,13 @@
 
 session_start();
 
-$username='';	
-$password='';
+$username='z1942888';	
+$password='2000Jul08';
 
 try{
 
 	// connect to database
-	$dsn = "mysql:host=courses;dbname=";	
+	$dsn = "mysql:host=courses;dbname=z1942888";	
 	$pdo = new PDO($dsn, $username, $password);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -42,6 +42,7 @@ try{
 	]);
 
 
+	$_SESSION['userID'] = $pdo->lastInsertID();
 	$_SESSION['usertype'] = $type;
 	$_SESSION['username'] = $user;
 

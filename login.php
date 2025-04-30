@@ -2,12 +2,12 @@
 
 session_start();
 
-$username = '';
-$password = '';
+$username = 'z1942888';
+$password = '2000Jul08';
 
 try{
 	//connect to datamase
-	$dsn = "mysql:host=courses;dbname=";
+	$dsn = "mysql:host=courses;dbname=z1942888";
 	$pdo = new PDO($dsn, $username, $password);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -26,6 +26,7 @@ try{
 	// their hashed password stored within the database 
 	if($user && password_verify($passInput, $user['password'])){
 
+		$_SESSION['userID'] = $user['userID'];
 		$_SESSION['usertype'] = $user['user_type'];	// use session variable to track user's type
 		$_SESSION['username'] = $user['username'];	// as well as their username
 
