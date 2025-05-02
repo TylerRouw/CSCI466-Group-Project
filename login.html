@@ -1,26 +1,20 @@
-<?php 
-
-?>
+<!DOCTYPE html>
 <html>
-
 	<head>
+		<title>Login</title>
 	</head>
-
-
 	<body>
+		<h1 style="text-align: center">Login</h1>	
+		<div style="width: fit-content; margin: auto; text-align: left">
+			<form action="login.php" method="POST">
 
-	<form action="login.php" method="POST">
+				<b>Username:</b><br/>
+				<input type="text" name="username" /><br/>
+				<b>Password:</b><br/>
+				<input type="password" name="password" /><br/><br/>
+				<input type="submit" value="Login" />
 
-		<b>Username:</b><br/>
-		<input type="text" name="username" /><br/>
-		<b>Password:</b><br/>
-		<input type="password" name="password" /><br/>
-		<input type="submit" value="Login" />
-
-	</form>
-
+			</form>
+		</div>
 	</body>	
-
-
-
 </html>

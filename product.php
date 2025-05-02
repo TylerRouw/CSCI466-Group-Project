@@ -14,6 +14,20 @@ try{
 	$sql = $pdo->query("SELECT image, prodID, name, price FROM products WHERE stock > 0 ORDER BY prodID ASC");
 	$products = $sql->fetchall(PDO::FETCH_ASSOC);
 
+	$sql = $pdo->prepare("SELECT cartID FROM carts WHERE userID = :userID");
+	$sql->execute(['userID' => $_SESSION['userID']]);
+	$cart = $sql->fetchColumn();
+
+	if ($cart != false){
+
+		$sql = $pdo->prepare("SELECT COUNT(*) FROM cartItems WHERE cartID = :cartID");
+		$sql->execute(['cartID' => $cart]);
+		$numItems = $sql->fetchColumn();
+
+	}
+
+
+
 } catch(PDOException $e){
 	echo "Error: ". $e->getMessage();
 	exit;
@@ -33,7 +47,8 @@ try{
 		<h2><a href="<?php echo $_SESSION['usertype']; ?>_home.html">Home</a><br/>
 	<?php } ?>
 
-	<?php if($_SESSION['usertype'] != null && $_SESSION['cart'] != null) { ?>
+
+	<?php if($_SESSION['usertype'] != null && $numItems != false && $numItems != 0) { ?>
        		<a href="cart.php">Cart</a></h2>
 	<?php } else { ?>
 		</h2>

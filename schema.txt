@@ -1,0 +1,46 @@
+CSCI 466 Databases Website Group Project Schema
+-------------------------------------------------------------
+
+users( userID, username, password, user_type, email, phone )
+
+- Primary Key: userID 
+
+-------------------------------------------------------------
+
+products( prodID, name, price, stock, image, description )
+
+- Primary Key: prodID
+
+-------------------------------------------------------------
+
+carts( cartID, userID )
+
+- Primary Key: cartID
+
+- Foreign Key: userID -> users
+
+-------------------------------------------------------------
+
+cartItems( itemID, cartID, prodID, quantity )
+
+- Primary Key: itemID
+
+- Foreign Keys: cartID -> carts, prodID -> products
+
+-------------------------------------------------------------
+
+orders( orderID, userID, status, orderDate, trackingNumber, orderTotal, notes )
+
+- Primary Key: orderID
+
+- Foreign Key: userID -> users
+
+-------------------------------------------------------------
+
+orderItems( orderItemID, orderID, prodID, quantity, price )
+
+- Primary Key: orderItemID
+
+- Foreign Keys: orderID -> orders, prodID -> products
+
+-------------------------------------------------------------- 

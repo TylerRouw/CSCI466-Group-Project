@@ -14,7 +14,9 @@ try {
 
 
 	// get all order info for logged in user
-	$sql = $pdo->prepare("SELECT * FROM orders WHERE userID = :userID ORDER BY orderDate ASC");
+	$sql = $pdo->prepare("SELECT * FROM orders WHERE userID = :userID 
+				ORDER BY CASE WHEN status = 'shipped' THEN 0 WHEN status = 'processing' THEN 1 ELSE 2 END,
+				orderID ASC");
 	$sql->execute(['userID' => $userID]);
 	$orders = $sql->fetchall(PDO::FETCH_ASSOC);
 
@@ -50,7 +52,7 @@ try {
 			<tbody>
 				<?php foreach($orders as $order) { ?>
 					<tr style="text-align: center">
-						<td><?php echo $order['orderID'] ?></td>
+						<td><a href="order_contents.php?orderID=<?php echo $order['orderID'] ?>"><?php echo $order['orderID'] ?></a></td>
 						<td><?php echo $order['orderDate'] ?></td>
 						<td><?php echo $order['trackingNumber'] ?></td>
 						<td><?php echo $order['status'] ?></td>

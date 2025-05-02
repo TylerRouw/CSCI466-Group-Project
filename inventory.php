@@ -5,7 +5,7 @@ $password = '';
 
 try{
 	// connect to the database
-	$dsn = "mysql:host=courses;dbname=";
+	$dsn = "mysql:host=courses;dbname=z1942888";
 	$pdo = new PDO($dsn, $username, $password);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
