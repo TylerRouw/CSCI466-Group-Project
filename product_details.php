@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-$username = '';
-$password = '';
+$username = 'z1942888';
+$password = '2000Jul08';
 
 try{
 	// connect to database
-	$dsn = "mysql:host=courses;dbname=";
+	$dsn = "mysql:host=courses;dbname=z1942888";
 	$pdo = new PDO($dsn, $username, $password);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -64,6 +64,7 @@ if($bool != false && isset($_POST['cartAdd'])){
 					ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity)");
 		$sql->execute(['cartID' => $cartID, 'prodID' => $prodID, 'quantity' => $quantity]);	
 
+		// get stock in use 
 		$sql = $pdo->prepare("SELECT stockInUse FROM products WHERE prodID = :prodID");
 		$sql->execute(['prodID' => $prodID]);
 		$prod['stockInUse'] = $sql->fetchColumn();

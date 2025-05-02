@@ -1,16 +1,18 @@
 <?php
 session_start();
 
-$username = '';
-$password = '';
+$username = 'z1942888';
+$password = '2000Jul08';
 
 try {
-	$dsn = "mysql:host=courses;dbname=";
+	// connect to the database
+	$dsn = "mysql:host=courses;dbname=z1942888";
 	$pdo = new PDO($dsn, $username, $password);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 	$orderID = $_GET['orderID'];
 
+	// get info for each orderItem
 	$sql = $pdo->prepare("SELECT products.prodID, products.image, products.name, orderItems.quantity FROM orderItems
 				JOIN products ON orderItems.prodID = products.prodID
 				WHERE orderItems.orderID = :orderID");

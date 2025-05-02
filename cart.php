@@ -5,14 +5,14 @@ if(!isset($_SESSION['userID'])){
 	header("Location: index.html");
 	exit;
 }
-$userID = $_SESSION['userID']; 	// use to link a user to their cart
+$userID = $_SESSION['userID']; 	
 
-$username = '';
-$password = '';
+$username = 'z1942888';
+$password = '2000Jul08';
 
 try{
 	// connect to the database
-	$dsn = "mysql:host=courses;dbname=";
+	$dsn = "mysql:host=courses;dbname=z1942888";
 	$pdo = new PDO($dsn, $username, $password);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -23,6 +23,7 @@ try{
 
 	$userID = $_SESSION['userID']; 	// use to link a user to their cart
 
+	// get cart
 	$sql = $pdo->prepare("SELECT cartID FROM carts WHERE userID = :userID");
 	$sql->execute(['userID' => $userID]);
 	$cartID = $sql->fetchColumn();
@@ -41,6 +42,7 @@ try{
 	$sql->execute(['cartID' => $cartID]);
 	$cartItems = $sql->fetchall(PDO::FETCH_ASSOC); 			//cartItems now holds info for each product in cart
 
+	
 	$grandTotal = 0;
 	foreach($cartItems as &$item)
 	{

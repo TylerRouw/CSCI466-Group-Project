@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-$username = '';
-$password = '';
+$username = 'z1942888';
+$password = '2000Jul08';
 
 try{
 	// connect to database
-	$dsn = "mysql:host=courses;dbname=";
+	$dsn = "mysql:host=courses;dbname=z1942888";
 	$pdo = new PDO($dsn, $username, $password);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -14,6 +14,7 @@ try{
 	$sql = $pdo->query("SELECT image, prodID, name, price FROM products WHERE stock > 0 ORDER BY prodID ASC");
 	$products = $sql->fetchall(PDO::FETCH_ASSOC);
 
+	// get cart
 	$sql = $pdo->prepare("SELECT cartID FROM carts WHERE userID = :userID");
 	$sql->execute(['userID' => $_SESSION['userID']]);
 	$cart = $sql->fetchColumn();

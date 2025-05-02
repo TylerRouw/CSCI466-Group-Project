@@ -2,8 +2,8 @@
 
 session_start();
 
-$username = '';
-$password = '';
+$username = 'z1942888';
+$password = '2000Jul08';
 
 try{
 	//connect to datamase

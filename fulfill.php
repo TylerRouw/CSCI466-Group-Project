@@ -1,33 +1,39 @@
 <?php
 session_start();
 
-$username = '';
-$password = '';
+$username = 'z1942888';
+$password = '2000Jul08';
 
 try {
-	$dsn = "mysql:host=courses;dbname=";
+	// connect tot database
+	$dsn = "mysql:host=courses;dbname=z1942888";
 	$pdo = new PDO($dsn, $username, $password);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 	$orderID = $_POST['orderID'];
 
+	// get info for each item on order
 	$sql = $pdo->prepare("SELECT products.prodID, products.image, products.name, orderItems.quantity FROM orderItems
 				JOIN products ON orderItems.prodID = products.prodID
 				WHERE orderItems.orderID = :orderID");
 	$sql->execute(['orderID' => $orderID]);
 	$orderItems = $sql->fetchall(PDO::FETCH_ASSOC);
 
+	// get user info
 	$sql= $pdo->prepare("SELECT users.email, users.phone, users.username FROM orders
 			JOIN users ON orders.userID = users.userID WHERE orders.orderID = :orderID");
 	$sql->execute(['orderID' => $orderID]);
 	$userInfo = $sql->fetch(PDO::FETCH_ASSOC);
 
 
+	// if employee hits the marked as shipped button
 	if(isset($_POST['markAsShipped'])){
-		
+
+		// update order status
 		$sql = $pdo->prepare("UPDATE orders SET status= 'shipped', notes = :notes WHERE orderID = :orderID");
 		$sql->execute(['orderID' => $orderID, 'notes' => $_POST['notes']]);
 
+		// and go back to list of active orders
 		header("Location: active_orders.php");
 		exit;
 	}
