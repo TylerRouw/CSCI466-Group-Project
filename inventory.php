@@ -1,11 +1,11 @@
 <?php 
 
-$username = 'z1942888';
-$password = '2000Jul08';
+$username = '';
+$password = '';
 
 try{
 	// connect to the database
-	$dsn = "mysql:host=courses;dbname=z1942888";
+	$dsn = "mysql:host=courses;dbname=";
 	$pdo = new PDO($dsn, $username, $password);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
